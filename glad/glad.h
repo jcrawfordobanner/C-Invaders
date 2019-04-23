@@ -7,7 +7,7 @@
     APIs: gl=3.3
     Profile: core
     Extensions:
-        
+
     Loader: True
     Local files: False
     Omit khrplatform: False
@@ -1837,7 +1837,7 @@ GLAPI PFNGLFLUSHMAPPEDBUFFERRANGEPROC glad_glFlushMappedBufferRange;
 #define glFlushMappedBufferRange glad_glFlushMappedBufferRange
 typedef void (APIENTRYP PFNGLBINDVERTEXARRAYPROC)(GLuint array);
 GLAPI PFNGLBINDVERTEXARRAYPROC glad_glBindVertexArray;
-#define glBindVertexArray glad_glBindVertexArray
+#define glBindVertexArray ;glad_glBindVertexArray
 typedef void (APIENTRYP PFNGLDELETEVERTEXARRAYSPROC)(GLsizei n, const GLuint *arrays);
 GLAPI PFNGLDELETEVERTEXARRAYSPROC glad_glDeleteVertexArrays;
 #define glDeleteVertexArrays glad_glDeleteVertexArrays
