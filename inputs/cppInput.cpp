@@ -23,6 +23,6 @@ int main() {
 		ch = getch();
 		if (ch == 97) {
 			printf("you hit a\n");
-	}
+		}
 	}
 }

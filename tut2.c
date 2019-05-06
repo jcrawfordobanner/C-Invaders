@@ -4,6 +4,8 @@
 #include <dlfcn.h>
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
+#include<ncurses.h>
+
 
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
@@ -31,11 +33,15 @@ void processInput(GLFWwindow *window)
 }
 
 int main(int argc, char** argv){
-  glfwInit();
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+	initscr();
+	noecho();
+	cbreak();
+
+  	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
   if (window == NULL){
     glfwTerminate();
     return -1;
@@ -68,7 +74,7 @@ int main(int argc, char** argv){
 
 
   float vertices[] = {
-       0.0f,  0.5f, 0.0f,  // top right
+       0.5f,  0.5f, 0.0f,  // top right
        0.5f, -0.5f, 0.0f,  // bottom right
       -0.5f, -0.5f, 0.0f,  // bottom left
       -0.5f, -0.5f, 0.0f   // top left
@@ -106,10 +112,18 @@ int main(int argc, char** argv){
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
-
+  float color1 = 0.2;
   while(!glfwWindowShouldClose(window)){
     processInput(window);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	char color;
+	color = getch();
+	if (color == 97) {
+		// printf("you hit a\n");
+		color1 += 0.1;
+	}
+
+
+    glClearColor(color1, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
