@@ -10,24 +10,6 @@
 #include "shader.h"
 #include <ncurses.h>
 
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec2 aTexCoord;\n"
-"out vec2 TexCoord;\n"
-"uniform mat4 transform;\n"
-"void main()\n"
-"{\n"
-"    gl_Position = transform * vec4(aPos, 1.0f);\n"
-"    TexCoord = vec2(aTexCoord.x, aTexCoord.y);\n"
-"}\n\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
-
 void framebuffer_size_callback(GLFWwindow* window, int width, int height){
     glViewport(0, 0, width, height);
 }
@@ -101,15 +83,15 @@ int main(int argc, char** argv){
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-	char input = getch();
-	switch (input) {
-		case 97:
-			rad += 1.0f;
-			break;
-		case 98:
-			rad -= 1.0f;
-			break;
-	}
+  	char input = getch();
+  	switch (input) {
+  		case 97:
+  			rad += 1.0f;
+  			break;
+  		case 98:
+  			rad -= 1.0f;
+  			break;
+  	}
     glm::mat4 trans = glm::mat4(1.0f);
     trans = glm::rotate(trans, glm::radians(rad), glm::vec3(0.0, 0.0, 1.0));
 
